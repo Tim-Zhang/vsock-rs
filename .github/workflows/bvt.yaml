@@ -18,6 +18,5 @@ jobs:
       run: sudo apt-get install qemu-system-x86 -y
     - name: Run Unit Test
       run: |
-        lsmod|grep kvm
         make vm-for-action
         make check
