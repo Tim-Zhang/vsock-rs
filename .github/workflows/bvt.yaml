@@ -19,6 +19,6 @@ jobs:
     - name: Run Unit Test
       run: |
         ls -l
-        tree
         make vm-for-action
+        tree
         make check
