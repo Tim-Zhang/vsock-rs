@@ -2,7 +2,6 @@ name: BVT
 on: [pull_request]
 jobs:
   bvt:
-    name: BVT
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -15,8 +14,10 @@ jobs:
     - name: Clippy Check
       run: make clippy
     - name: Install QEMU
-      run: sudo apt-get install qemu-system-x86
+      run: sudo apt-get install qemu-system-x86 -y
     - name: Run Unit Test
       run: |
+        echo $PATH
+        ls /usr/bin/qemu-system-x86_64
         make vm-for-action
         make check
