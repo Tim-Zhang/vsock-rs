@@ -15,10 +15,11 @@ jobs:
     # - name: Clippy Check
     #   run: make clippy
     - name: Install QEMU
-      run: sudo apt-get install qemu-system-x86 -y
+      run: |
+        sudo apt-get install qemu-system-x86 -y
+        sudo modprobe kvm-intel
     - name: Run Unit Test
       run: |
-        ls -l
+        lsmod|grep kvm
         make vm-for-action
-        tree
         make check
