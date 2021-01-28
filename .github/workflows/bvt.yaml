@@ -1,0 +1,25 @@
+name: BVT
+on: [pull_request]
+jobs:
+  bvt:
+    name: BVT
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: install dependencies
+      run: |
+        rustup target add x86_64-unknown-linux-musl
+        rustup component add rustfmt clippy
+    - name: Format Check
+      run: make fmt
+    - name: Clippy Check
+      run: make clippy
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v1
+      with:
+          image: tonistiigi/binfmt:latest
+          platforms: aarch64
+    - name: Run Unit Test
+      run: |
+        make vm-for-action
+        make check
