@@ -57,8 +57,8 @@ vm: initrd.cpio
 
 # Start a virtio socket enabled vm in background
 vm-for-action: initrd.cpio
-	sudo qemu-aarch64 -kernel test_fixture/bzImage -initrd target/$(TOOLCHAIN)/debug/initrd.cpio \
-		-enable-kvm -m 256 -device vhost-vsock-pci,id=vhost-vsock-pci0,guest-cid=3 -daemonize -append "console=ttyS0"
+	sudo qemu-system-x86_64 -kernel test_fixture/bzImage -initrd target/$(TOOLCHAIN)/debug/initrd.cpio \
+		-m 256 -device vhost-vsock-pci,id=vhost-vsock-pci0,guest-cid=3 -display none -daemonize -append "console=ttyS0"
 
 # Create a simple operating system image for the vm
 initrd.cpio: echo_server
