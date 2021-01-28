@@ -2,6 +2,7 @@ name: BVT
 on: [pull_request]
 jobs:
   bvt:
+    name: BVT
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -9,15 +10,15 @@ jobs:
       run: |
         rustup target add x86_64-unknown-linux-musl
         rustup component add rustfmt clippy
-    - name: Format Check
-      run: make fmt
-    - name: Clippy Check
-      run: make clippy
+    # - name: Format Check
+    #   run: make fmt
+    # - name: Clippy Check
+    #   run: make clippy
     - name: Install QEMU
       run: sudo apt-get install qemu-system-x86 -y
     - name: Run Unit Test
       run: |
-        echo $PATH
-        ls /usr/bin/qemu-system-x86_64
+        ls -l
+        tree
         make vm-for-action
         make check
