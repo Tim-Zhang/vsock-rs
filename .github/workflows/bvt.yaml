@@ -14,11 +14,8 @@ jobs:
       run: make fmt
     - name: Clippy Check
       run: make clippy
-    - name: Set up QEMU
-      uses: docker/setup-qemu-action@v1
-      with:
-          image: tonistiigi/binfmt:latest
-          platforms: aarch64
+    - name: Install QEMU
+      run: sudo apt-get install qemu-system-x86
     - name: Run Unit Test
       run: |
         make vm-for-action
