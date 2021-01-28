@@ -16,7 +16,9 @@ jobs:
     #   run: make clippy
     - name: Install QEMU
       run: sudo apt-get install qemu-system-x86 -y
-    - name: Run Unit Test
-      run: |
-        make vm-for-action
-        make check
+    - name: Setup upterm session
+      uses: lhotari/action-upterm@v1
+    # - name: Run Unit Test
+    #   run: |
+    #     make vm-for-action
+    #     make check
