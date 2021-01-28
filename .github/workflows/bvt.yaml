@@ -15,9 +15,7 @@ jobs:
     # - name: Clippy Check
     #   run: make clippy
     - name: Install QEMU
-      run: |
-        sudo apt-get install qemu-system-x86 -y
-        sudo modprobe kvm-intel
+      run: sudo apt-get install qemu-system-x86 -y
     - name: Run Unit Test
       run: |
         lsmod|grep kvm
